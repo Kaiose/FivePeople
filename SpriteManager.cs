@@ -19,9 +19,11 @@ public class SpriteManager : MonoBehaviour {
     private Sprite StageOpen;
     [SerializeField]
     private Sprite StageUnOpen;
+    [SerializeField]
+    private GameObject Indicator;
     // Use this for initialization
 
-   void Awake()
+    void Awake()
     {
         s_SpriteInstance = this;
     }
@@ -47,6 +49,7 @@ public class SpriteManager : MonoBehaviour {
 
             if(child.gameObject.name.CompareTo(stage) == 0 && StageState == false)
             {
+                Indicator.transform.position = new Vector3(child.gameObject.transform.position.x, child.gameObject.transform.position.y+1,0);
                 child.sprite = StageOpen;
                 StageState = true;
             }
