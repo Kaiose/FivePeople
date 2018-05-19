@@ -19,7 +19,9 @@ public class ButtonGameStart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		booster.boosterActivated = boosted;
+
+		//부스터가 켜졌는지 꺼졌는지 검사
+		//booster.boosterActivated = boosted;
 	}
 
 	private void OnMouseEnter()
