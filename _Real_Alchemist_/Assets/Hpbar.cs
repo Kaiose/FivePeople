@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Hpbar : MonoBehaviour {
+    /*
+     * 이것은 HpBar가 시간이 흐름에 따라서 줄어드는 코드이다. 
+     * timeAmt값을 늘리면 천천히 줄어든다.
+     * bool을 이용해서, 작동이 멈추거나, 다시 작동할 수 있도록 만들었다. 
+    */
+
+
 
     Image fillIng;
     public float timeAmt = 10;

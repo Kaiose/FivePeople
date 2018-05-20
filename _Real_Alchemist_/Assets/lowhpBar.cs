@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class lowhpBar : MonoBehaviour
 {
-
+    /*
+     * 빨피가 되었을 때 작동되는 코드이다. 
+     * 여기서 시간이 다 되서 죽었을 시, GameOver창을 띄워준다. 
+    */
     Image fillIng;
     public float timeAmt = 10;
     float time;
     bool OnOff;
 
     // 체력바가 다 달면 불러오는 것.
-    GameObject gameover;
+    public GameObject gameover;
+   
+
 
     void Start()
     {
@@ -30,8 +35,12 @@ public class lowhpBar : MonoBehaviour
                 time -= Time.deltaTime;
                 fillIng.fillAmount = time / timeAmt;
             }
+
+            if(fillIng.fillAmount == 0)
+            {
+                gameover.SetActive(true);
+            }
         }
-        // 불러오기 넣을 자리
     }
 
 

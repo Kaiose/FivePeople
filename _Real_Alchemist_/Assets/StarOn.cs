@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StarOn : MonoBehaviour {
-
+    /*
+     *  HpBar와 거의 유사한 코드지만, 별이 줄어드는 것을 구현하기 위해서 새로 만들었다. 
+     *  똑같이 bool을 이용해서 켰다가 껐다가 한다. 
+    */
     Image fillIng;
     public float timeAmt = 10;
     float time;
