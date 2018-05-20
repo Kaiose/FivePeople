@@ -16,8 +16,9 @@ public class lowhpBar : MonoBehaviour
 
     // 체력바가 다 달면 불러오는 것.
     public GameObject gameover;
-   
 
+    // 세팅창 동작그만
+    public GameObject setting;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class lowhpBar : MonoBehaviour
             if(fillIng.fillAmount == 0)
             {
                 gameover.SetActive(true);
+                Destroy(setting);
             }
         }
     }
