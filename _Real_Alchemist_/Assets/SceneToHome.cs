@@ -12,4 +12,9 @@ public class SceneToHome : MonoBehaviour {
     {
         SceneManager.LoadScene("Home");
     }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene("GamePlay");
+    }
 }
