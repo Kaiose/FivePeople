@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/백환기/Desktop/game/game.exe
+C:/Users/백환기/Desktop/Desktop.exe
 SceneListBegin?
 Assets/GamePlay.unity
 Assets/Home.unity
@@ -109,7 +109,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-ea115d894fa3ab7ff2eab3fe0e407cfb Assembly-CSharp.dll:.lowhpBar
+ea562f7910ee2df9a47f850f586c2d4d Assembly-CSharp.dll:.lowhpBar
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
