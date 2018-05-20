@@ -56,7 +56,6 @@
      <Compile Include="Assets\lowhpBar.cs" />
      <Compile Include="Assets\SceneToHome.cs" />
      <Compile Include="Assets\ScoreManager.cs" />
-     <Compile Include="Assets\Script\ButtonManager.cs" />
      <Compile Include="Assets\StarOn.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/백환기/Documents/GitHub/FivePeople/_Real_Alchemist_/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
