@@ -7,16 +7,14 @@ namespace GameManager
     public class LevelManager : MonoBehaviour
     {
         
-        public short CurrentLevel = 1;
-
-       
+        private short CurrentLevel = 1;
 
         // Use this for initialization
         void Start()
         {
             if (CheckBackUpFile())
             {
-                /*
+                /*왕이센씨 유저 데이터 호출
                 * File Open  and Get Level -> Change CurrentLevel
                 * 
                 */
@@ -36,9 +34,11 @@ namespace GameManager
 
         void IncreaseLevel()
         {
+           // if (HeartManager.HeartInstance.GetHeartCount() <= 0) return;
             if (Input.GetKeyDown("space"))
             {
-                print("space Down");
+                print("Press space");
+                HeartManager.HeartInstance.decreaseHeart();
                 CurrentLevel += 1;
                 StageSpriteUpdate();
             }
@@ -53,13 +53,12 @@ namespace GameManager
 
         void StageSpriteUpdate()
         {
+            print("Stage");
             string Stage = "Stage";
             string stageNumber = CurrentLevel.ToString();
             Stage += stageNumber;
-            print(Stage);
             SpriteManager.SpriteInstance.StageSpriteUpdate(Stage);
-        }
-        
+        } 
 
     }
 }

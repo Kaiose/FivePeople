@@ -33,6 +33,14 @@ public class EventManager : MonoBehaviour {
             yield return 0;
         }
     }
+    IEnumerator FadeIn()
+    {
+        for (float i = 1f; i >= 0; i -= 0.1f)
+        {
+            FadeSceanRenderer.material.color = new Vector4(1, 1, 1, i);
+            yield return 0;
+        }
+    }
 
 
     public void test()
@@ -44,5 +52,11 @@ public class EventManager : MonoBehaviour {
     {
         print("Execute CallFadeOut");
         StartCoroutine("FadeOut");
+    }
+
+    public void CallFadeIn()
+    {
+        print("Execute CallFadeOut");
+        StartCoroutine("FadeIn");
     }
 }

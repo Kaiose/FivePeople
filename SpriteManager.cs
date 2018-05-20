@@ -7,8 +7,9 @@ public class SpriteManager : MonoBehaviour {
 
     static protected SpriteManager s_SpriteInstance;
     static public SpriteManager SpriteInstance { get { return s_SpriteInstance; } }
-    private SpriteRenderer[] spriteRenderer;
-
+    private SpriteRenderer[] StageSpriteRenderer;
+    private SpriteRenderer[] HeartCountSpriteRenderer;
+    private SpriteRenderer CurrentSpriteRenderer;
     [SerializeField]
     private GameObject StageGroup;
     [SerializeField]
@@ -19,6 +20,11 @@ public class SpriteManager : MonoBehaviour {
     private Sprite StageUnOpen;
     [SerializeField]
     private GameObject Indicator;
+    [SerializeField]
+    private GameObject CurrentSprite;
+    [SerializeField]
+    private Sprite[] HeartCountSpriteGroup;
+
     // Use this for initialization
 
     void Awake()
@@ -27,22 +33,31 @@ public class SpriteManager : MonoBehaviour {
     }
     
     void Start () {
-		
-	}
+        StageSpriteRenderer = StageGroup.GetComponentsInChildren<SpriteRenderer>();
+        CurrentSpriteRenderer = CurrentSprite.GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
+    public void HeartCountSpriteUpdate()
+    {
+        print("HeartCountSpriteUpdate");
+        int CurrentHeartCount = HeartManager.HeartInstance.GetHeartCount();
+      
+
+        CurrentSpriteRenderer.sprite = HeartCountSpriteGroup[CurrentHeartCount];
+ 
+    }
+
     public void StageSpriteUpdate(string stage)
     {
         print("StartStageSpriteUpdate");
-        spriteRenderer = StageGroup.GetComponentsInChildren<SpriteRenderer>();
-
         bool StageState = false;
 
-        foreach (SpriteRenderer child in spriteRenderer)
+        foreach (SpriteRenderer child in StageSpriteRenderer)
         {
 
             if(child.gameObject.name.CompareTo(stage) == 0 && StageState == false)
