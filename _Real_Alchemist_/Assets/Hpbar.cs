@@ -14,7 +14,7 @@ public class Hpbar : MonoBehaviour {
 
     void Start()
     {
-        OnOff = true;
+        OnOff = false;
         fillIng = this.GetComponent<Image>();
         time = timeAmt;
     }

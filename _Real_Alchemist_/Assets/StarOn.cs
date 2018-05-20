@@ -14,10 +14,12 @@ public class StarOn : MonoBehaviour {
     public GameObject star2;
     public GameObject star3;
 
+    private bool onoff;
 
 
     void Start()
     {
+        onoff = false;
         fillIng = this.GetComponent<Image>();
         time = timeAmt;
     }
@@ -27,29 +29,40 @@ public class StarOn : MonoBehaviour {
     */
     void FixedUpdate()
     {
-        if (time >= 0)
+        if (onoff == true)
         {
-            time -= Time.deltaTime;
-            fillIng.fillAmount = time / timeAmt;
-            if (fillIng.fillAmount < 0.962 && fillIng.fillAmount > 0.762)
+            if (time >= 0)
             {
-                Destroy(star);
-                star1.SetActive(true);
-            }
-            if (fillIng.fillAmount < 0.762 && fillIng.fillAmount > 0.048)
-            {
-                Destroy(star1);
-                star2.SetActive(true);
-            }
-            if (fillIng.fillAmount < 0.048)
-            {
-                Destroy(star2);
-                star3.SetActive(true);
-            }
+                time -= Time.deltaTime;
+                fillIng.fillAmount = time / timeAmt;
+                if (fillIng.fillAmount < 0.952 && fillIng.fillAmount > 0.229)
+                {
+                    Destroy(star);
+                    star1.SetActive(true);
+                }
+                if (fillIng.fillAmount < 0.229 && fillIng.fillAmount > 0.039)
+                {
+                    Destroy(star1);
+                    star2.SetActive(true);
+                }
+                if (fillIng.fillAmount < 0.039)
+                {
+                    Destroy(star2);
+                    star3.SetActive(true);
+                }
 
 
-        }
+            }
+        }       
+    }
 
-       
+    public void Off()
+    {
+        onoff = false;
+    }
+
+    public void On()
+    {
+        onoff = true;
     }
 }
