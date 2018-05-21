@@ -2791,7 +2791,7 @@ GameObject:
   - component: {fileID: 1223098511}
   - component: {fileID: 1223098510}
   m_Layer: 5
-  m_Name: ObjectCanvas
+  m_Name: PurposeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3044,7 +3044,7 @@ GameObject:
   - component: {fileID: 1262647320}
   - component: {fileID: 1262647319}
   m_Layer: 5
-  m_Name: retireCanvas
+  m_Name: RetireCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

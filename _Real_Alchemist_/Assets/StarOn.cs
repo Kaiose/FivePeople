@@ -28,7 +28,7 @@ public class StarOn : MonoBehaviour {
     }
 
     /*
-        시간이 지남에 따라서 hp가 줄어들고, 일정치 줄어들면, Red Bar가 생성된다. 
+        나중에 게임이 만들어 진다면, time을 score로 바꾸면 될 것.
     */
     void FixedUpdate()
     {
