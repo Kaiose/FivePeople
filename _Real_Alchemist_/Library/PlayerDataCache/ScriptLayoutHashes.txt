@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/백환기/Desktop/Desktop.exe
+C:/Users/백환기/PlayScene/PlayScene.exe
 SceneListBegin?
 Assets/GamePlay.unity
 Assets/Home.unity
