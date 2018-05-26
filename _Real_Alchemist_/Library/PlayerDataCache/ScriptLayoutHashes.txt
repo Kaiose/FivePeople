@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/백환기/PlayScene/PlayScene.exe
+C:/Users/백환기/Desktop/Play_/Play_.exe
 SceneListBegin?
 Assets/GamePlay.unity
 Assets/Home.unity
@@ -133,6 +133,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+3e9f4ad75f3ec96866ee7260c713e57c Assembly-CSharp.dll:.disappear
 482e4208807c1ba5898aca1f41fd871f Assembly-CSharp.dll:.Hpbar
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -150,5 +151,6 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-6c4546896caafcfd7a06da9068744f44 Assembly-CSharp.dll:.StarOn
+a0d5ad781b26f4b4974ba02777711ab2 Assembly-CSharp.dll:.StarOn
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+9940deaf16046d9e3cb996f54f64ed58 Assembly-CSharp.dll:.MouseCursor
