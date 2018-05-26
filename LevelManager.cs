@@ -10,6 +10,11 @@ namespace GameManager
         private short CurrentLevel = 1;
 
         // Use this for initialization
+        void Awake()
+        {
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            Screen.SetResolution(545, 969, false);
+        }
         void Start()
         {
             if (CheckBackUpFile())
@@ -19,7 +24,6 @@ namespace GameManager
                 * 
                 */
             }
-
 
         }
 

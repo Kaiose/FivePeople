@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GameManager;
 
 
@@ -9,14 +10,15 @@ public class EventManager : MonoBehaviour {
     static public EventManager EventInstance { get { return s_EventInstance; } }
 
     [SerializeField]
-    private Renderer FadeSceanRenderer;
+    private CanvasRenderer FadeSceanImage;
     void Awake()
     {
         s_EventInstance = this;
     }
     void Start()
     {
-        FadeSceanRenderer.material.color = new Vector4(1, 1, 1, 0);
+        FadeSceanImage.SetAlpha(0);
+    //    FadeSceanImage.material.color = new Vector4(1, 1, 1, 0);
     }
 
 
@@ -29,7 +31,7 @@ public class EventManager : MonoBehaviour {
     {
         for (float i = 0f; i <= 1; i += 0.1f)
         {
-          FadeSceanRenderer.material.color = new Vector4(1, 1, 1, i);
+     //       FadeSceanImage.material.color = new Vector4(1, 1, 1, i);
             yield return 0;
         }
     }
@@ -37,7 +39,7 @@ public class EventManager : MonoBehaviour {
     {
         for (float i = 1f; i >= 0; i -= 0.1f)
         {
-            FadeSceanRenderer.material.color = new Vector4(1, 1, 1, i);
+    //        FadeSceanImage.material.color = new Vector4(1, 1, 1, i);
             yield return 0;
         }
     }

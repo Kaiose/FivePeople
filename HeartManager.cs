@@ -10,8 +10,13 @@ public class HeartManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+
+    void Awake()
+    {
         s_HeartInstance = this;
+    }
+    void Start () {
+  
         //if (CheckBackUpFile())
         //{
         //    /*
@@ -20,6 +25,7 @@ public class HeartManager : MonoBehaviour {
         //    * 
         //    */
         //}
+        SpriteManager.SpriteInstance.HeartCountSpriteUpdate();
     }
 	
 	// Update is called once per frame
@@ -39,8 +45,10 @@ public class HeartManager : MonoBehaviour {
     {
 
         print("decreaseHeart");
-        if (CurrentHeart <= 0) return;
         CurrentHeart -= 1;
+        if (CurrentHeart <= 0)
+            CurrentHeart = 0;
+      
         SpriteManager.SpriteInstance.HeartCountSpriteUpdate();
         return;
     }

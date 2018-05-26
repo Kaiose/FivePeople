@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameManager;
+using UnityEngine.UI;
 
 public class SpriteManager : MonoBehaviour {
 
     static protected SpriteManager s_SpriteInstance;
     static public SpriteManager SpriteInstance { get { return s_SpriteInstance; } }
     private SpriteRenderer[] StageSpriteRenderer;
-    private SpriteRenderer[] HeartCountSpriteRenderer;
     private SpriteRenderer CurrentSpriteRenderer;
+	
     [SerializeField]
     private GameObject StageGroup;
     [SerializeField]
@@ -21,35 +22,49 @@ public class SpriteManager : MonoBehaviour {
     [SerializeField]
     private GameObject Indicator;
     [SerializeField]
-    private GameObject CurrentSprite;
+    private Text HeartCount;
     [SerializeField]
-    private Sprite[] HeartCountSpriteGroup;
-
+    private Text GoldCount;
     // Use this for initialization
 
     void Awake()
     {
         s_SpriteInstance = this;
+
     }
     
     void Start () {
         StageSpriteRenderer = StageGroup.GetComponentsInChildren<SpriteRenderer>();
-        CurrentSpriteRenderer = CurrentSprite.GetComponent<SpriteRenderer>();
+       
     }
 	
+    void Enable()
+    {
+   
+    }
+
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     public void HeartCountSpriteUpdate()
     {
         print("HeartCountSpriteUpdate");
         int CurrentHeartCount = HeartManager.HeartInstance.GetHeartCount();
-      
 
-        CurrentSpriteRenderer.sprite = HeartCountSpriteGroup[CurrentHeartCount];
+        HeartCount.text = CurrentHeartCount.ToString();
+     
  
+    }
+
+    public void GoldCountSpriteUpdate()
+    {
+        print("GoldCountSpriteUpdate");
+        int CurrentGoldCount = GoldManager.GoldInstance.GetGoldCount();
+        
+
+        GoldCount.text = CurrentGoldCount.ToString();
     }
 
     public void StageSpriteUpdate(string stage)
