@@ -51,12 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BackGroundSize.cs" />
-     <Compile Include="Assets\Hpbar.cs" />
-     <Compile Include="Assets\lowhpBar.cs" />
-     <Compile Include="Assets\SceneToHome.cs" />
-     <Compile Include="Assets\ScoreManager.cs" />
-     <Compile Include="Assets\StarOn.cs" />
+     <Compile Include="Assets\MouseCursor.cs" />
+     <Compile Include="Assets\Script\BackGroundSize.cs" />
+     <Compile Include="Assets\Script\disappear.cs" />
+     <Compile Include="Assets\Script\Hpbar.cs" />
+     <Compile Include="Assets\Script\lowhpBar.cs" />
+     <Compile Include="Assets\Script\SceneToHome.cs" />
+     <Compile Include="Assets\Script\ScoreManager.cs" />
+     <Compile Include="Assets\Script\StarOn.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/백환기/Documents/GitHub/FivePeople/_Real_Alchemist_/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
