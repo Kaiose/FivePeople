@@ -11,7 +11,6 @@ public class StarOn : MonoBehaviour {
     Image fillIng;
 
     // 점수에 따라 늘어나는 게이지의 량
-    private float scoreAmt = 10;
     float score;
 
     public GameObject star;
@@ -26,7 +25,8 @@ public class StarOn : MonoBehaviour {
     {
         onoff = false;
         fillIng = this.GetComponent<Image>();
-        score = scoreAmt;
+
+        fillIng.fillAmount = 0.0f; 
     }
 
     /*
@@ -38,19 +38,20 @@ public class StarOn : MonoBehaviour {
         {
             if (score >= 0)
             {
-                // score -= 점수가 오르는 만큼 적절하게;
-                fillIng.fillAmount = score / scoreAmt;
-                if (fillIng.fillAmount < 0.952 && fillIng.fillAmount > 0.229)
+                // 게임 속의 점수가 올라갈 때마다 여기서 올라가도록 장치해야함.
+                // score += addScore;
+                // fillIng.fillAmount += score
+                if (fillIng.fillAmount > 0.047 && fillIng.fillAmount < 0.773)
                 {
                     Destroy(star);
                     star1.SetActive(true);
                 }
-                if (fillIng.fillAmount < 0.229 && fillIng.fillAmount > 0.039)
+                if (fillIng.fillAmount > 0.773 && fillIng.fillAmount < 0.039)
                 {
                     Destroy(star1);
                     star2.SetActive(true);
                 }
-                if (fillIng.fillAmount < 0.039)
+                if (fillIng.fillAmount > 0.961)
                 {
                     Destroy(star2);
                     star3.SetActive(true);
