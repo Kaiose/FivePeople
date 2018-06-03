@@ -39,7 +39,8 @@ public class lowhpBar : MonoBehaviour
 
             if(fillIng.fillAmount == 0)
             {
-                gameover.SetActive(true);
+                Time.timeScale = 0.0f;
+                gameover.SetActive(true);                
                 Destroy(setting);
             }
         }

@@ -7,7 +7,7 @@ namespace GameManager
     public class LevelManager : MonoBehaviour
     {
         
-        private short CurrentLevel = 1;
+        private short CurrentLevel = 1; //Load Data
 
         // Use this for initialization
         void Awake()
@@ -43,7 +43,7 @@ namespace GameManager
             {
                 print("Press space");
                 HeartManager.HeartInstance.decreaseHeart();
-                CurrentLevel += 1;
+                CurrentLevel += 1; //Save Data;
                 StageSpriteUpdate();
             }
         }

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D0AA542A-835E-61EE-FCCE-3642CD24EAAD}</ProjectGuid>
+    <ProjectGuid>{CF8D1591-D435-4ECA-23B8-9AB93972C3C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,7 @@
      <Compile Include="Assets\!Script\StageSelect\ButtonGameStart.cs" />
      <Compile Include="Assets\!Script\StageSelect\ButtonStageSelect.cs" />
      <Compile Include="Assets\!Script\StageSelect\StageSelectManager.cs" />
+     <Compile Include="Assets\!Script\StageSelectCanvas\MovingStageCanvas.cs" />
      <Compile Include="Assets\!Script\StageSelectCanvas\RenderClearBadge.cs" />
      <Compile Include="Assets\!Script\StageSelectCanvas\RenderStageSelect.cs" />
      <Compile Include="Assets\!Script\StageSelectCanvas\RenderStarNumber.cs" />
@@ -66,14 +67,23 @@
      <Compile Include="Assets\!Script\SummonDisplay\ButtonGoldSummon.cs" />
      <Compile Include="Assets\!Script\SummonDisplay\ButtonTicketSummon.cs" />
      <Compile Include="Assets\!Script\SummonDisplay\SummonResult.cs" />
+     <Compile Include="Assets\CoinGoingToScore.cs" />
+     <Compile Include="Assets\cube.cs" />
      <Compile Include="Assets\cube\Select.cs" />
+     <Compile Include="Assets\DestroyThis.cs" />
      <Compile Include="Assets\DonDestroy.cs" />
      <Compile Include="Assets\GoldTextCopy.cs" />
+     <Compile Include="Assets\Loading.cs" />
+     <Compile Include="Assets\LoadingSceneManager.cs" />
+     <Compile Include="Assets\ObjectRotate.cs" />
      <Compile Include="Assets\Prefeb\Cube.cs" />
+     <Compile Include="Assets\Prefeb\MouseOver.cs" />
      <Compile Include="Assets\Scenes___\Buffer.cs" />
      <Compile Include="Assets\Scenes___\ClickEvent.cs" />
      <Compile Include="Assets\Scenes___\CubeManager.cs" />
      <Compile Include="Assets\Scenes___\Game.cs" />
+     <Compile Include="Assets\Scenes___\Go.cs" />
+     <Compile Include="Assets\Scenes___\open.cs" />
      <Compile Include="Assets\Script\AttandManager.cs" />
      <Compile Include="Assets\Script\BackGroundSize.cs" />
      <Compile Include="Assets\Script\ButtonClick.cs" />
@@ -86,15 +96,20 @@
      <Compile Include="Assets\Script\HeartGenerateTime.cs" />
      <Compile Include="Assets\Script\HeartManager.cs" />
      <Compile Include="Assets\Script\Hpbar.cs" />
+     <Compile Include="Assets\Script\KinamHardCode.cs" />
      <Compile Include="Assets\Script\LevelManager.cs" />
      <Compile Include="Assets\Script\LoadingSlider.cs" />
      <Compile Include="Assets\Script\lowhpBar.cs" />
      <Compile Include="Assets\Script\MouseCursor.cs" />
+     <Compile Include="Assets\Script\MovingCanvas.cs" />
+     <Compile Include="Assets\Script\ObjectEffect.cs" />
+     <Compile Include="Assets\Script\RotateZ.cs" />
      <Compile Include="Assets\Script\SceneChange.cs" />
      <Compile Include="Assets\Script\SceneToHome.cs" />
      <Compile Include="Assets\Script\ScoreManager.cs" />
      <Compile Include="Assets\Script\SettingButtonClick.cs" />
      <Compile Include="Assets\Script\SpriteManager.cs" />
+     <Compile Include="Assets\Script\StageOnMouse.cs" />
      <Compile Include="Assets\Script\StarOn.cs" />
      <Compile Include="Assets\Script\StoryManager.cs" />
      <Compile Include="Assets\Script\TodayGet.cs" />
@@ -104,11 +119,12 @@
      <Compile Include="Assets\Scripts\SaveData.cs" />
      <Compile Include="Assets\Scripts\Shopping.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />
+     <Compile Include="Assets\timeStopAndStart.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/백환기/Desktop/메인,입장,소환 - 복사본 (2)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/백환기/Desktop/TeamProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/백환기/Desktop/메인,입장,소환 - 복사본 (2)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/백환기/Desktop/TeamProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

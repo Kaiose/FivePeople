@@ -7,7 +7,7 @@ public class AttandManager : MonoBehaviour {
     static public AttandManager AttandInstance { get { return s_AttandInstance; } }
 
 
-   public bool[] AttandDay = new bool[31];
+   public bool[] AttandDay = new bool[31]; //Load Data
     // Use this for initialization
     void Awake()
     {

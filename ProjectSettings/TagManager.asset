@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StageNumber
   - StarNumber
+  - objectjelly
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - coin
   - 
   - 
   - 
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: block
     uniqueID: 1707326579
+    locked: 0
+  - name: New Layer
+    uniqueID: 1245759425
     locked: 0

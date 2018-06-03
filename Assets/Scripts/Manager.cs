@@ -11,6 +11,8 @@ public class Manager : MonoBehaviour {
     public UserClass cur_user;
     [HideInInspector]
     public string cur_path;
+    public bool state;
+    public bool go;
     void Awake()
     {
         if (instance == null)
@@ -19,6 +21,8 @@ public class Manager : MonoBehaviour {
             DontDestroyOnLoad(this);
             cur_user = new UserClass();
             name = "fist instance";
+            state = false;
+            go = false;
         }
         else if (this != instance)
         { 

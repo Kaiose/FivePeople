@@ -8,9 +8,14 @@ public class Cube : MonoBehaviour {
     public int type;
     public int x, y;
     public int flag;
-  
+    public SpriteRenderer sr;
+    public BoxCollider2D collider;
+    public Rigidbody2D rd;
     void Start()
     {
+        rd = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
         flag = 1;
     }
     public void InitCube(int i_type,int posx,int posy,int i_flag)
@@ -26,6 +31,12 @@ public class Cube : MonoBehaviour {
         x = posx;
         y = posy;
     }
- 
+
+    public void ChangeSprite(Sprite temp)
+    {
+        sr.sprite = temp;
+        collider.enabled = false;
+        Destroy(rd);
+    }
   
 }

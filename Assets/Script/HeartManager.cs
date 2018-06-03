@@ -4,7 +4,7 @@ using UnityEngine;
 using GameManager;
 public class HeartManager : MonoBehaviour {
 
-    private int CurrentHeart = 5;
+    private int CurrentHeart = 5; //Load Data
     static protected HeartManager s_HeartInstance;
     static public HeartManager HeartInstance { get { return s_HeartInstance; } }
 
@@ -37,7 +37,7 @@ public class HeartManager : MonoBehaviour {
     {
         print("IncreaseHeart");
         if (CurrentHeart >= 5) return;
-        CurrentHeart += 1;
+        CurrentHeart += 1; //Save Data
         SpriteManager.SpriteInstance.HeartCountSpriteUpdate();
         return;
     }
@@ -45,7 +45,7 @@ public class HeartManager : MonoBehaviour {
     {
 
         print("decreaseHeart");
-        CurrentHeart -= 1;
+        CurrentHeart -= 1; //Save Data
         if (CurrentHeart <= 0)
             CurrentHeart = 0;
       

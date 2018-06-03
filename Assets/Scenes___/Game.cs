@@ -3,23 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+                coin.transform.position = list[i, j].cube_object.transform.position;
+                coin.SetActive(true);
+                coin.transform.position = Vector3.MoveTowards(coin.transform.position, coinlocation.position , 30.0f * Time.deltaTime);
+                if (coin.transform.position == coinlocation.position) Destroy(coin);
+*/
+
 public class Game : MonoBehaviour {
     public GameObject[] cube;
+    public ScoreManager sm;
+    public StarOn so;
+    public Sprite Coin;
+  
     public Text show;
     const int max_row = 9;
     const int max_col = 6;
-    int[] creat_arry = { max_row, max_row, max_row, max_row, max_row, max_row, };
+    int[] creat_arry = { max_row, max_row, max_row, max_row, max_row, max_row,  };
     
     CubeManager[,] list = new CubeManager[max_row, max_col];
     Buffer[] stack = new Buffer[max_col*max_row/3];
     Buffer[] del_buffer = new Buffer[max_col*max_row/3];
-  
+    Buffer create_buffer = new Buffer();
     int x1, y1,x2,y2;
     bool init_state = false;
+    bool check_state = false;
     bool ok = true;
+    bool jokejellyon = false;
     int s = 0;
     GameObject select_temp;
-   
+
+    public GameObject particle;
+    public GameObject particleEffect;
+
+
+    public Transform CoinDestroyPosition;
+    Transform start;
+
+    List<GameObject> CoinObject = new List<GameObject>();
+
+    public bool boostCheck;
+
 
     // Use this for initialization
     bool NodeCheck(int i,int j)
@@ -34,10 +58,10 @@ public class Game : MonoBehaviour {
         int counti = 0;
         int counti_up = 1;
         int counti_down = 1;
-       
+        bool t = false;
         while (tempj_right < max_col)
         {
-            if (list[i, j].cube_object.GetComponent<Cube>().type == list[i, tempj_right].cube_object.GetComponent<Cube>().type)
+            if (list[i, tempj_right].cube_object != null && list[i, j].cube_object.GetComponent<Cube>().type == list[i, tempj_right].cube_object.GetComponent<Cube>().type)
             {
                 tempj_right++;
                 countj_right++;
@@ -49,7 +73,7 @@ public class Game : MonoBehaviour {
         }
         while (tempj_left >= 0)
         {
-            if ( list[i, j].cube_object.GetComponent<Cube>().type == list[i, tempj_left].cube_object.GetComponent<Cube>().type)
+            if (list[i, tempj_left].cube_object != null && list[i, j].cube_object.GetComponent<Cube>().type == list[i, tempj_left].cube_object.GetComponent<Cube>().type)
             {
                 tempj_left--;
                 countj_left++;
@@ -62,7 +86,7 @@ public class Game : MonoBehaviour {
         countj = countj_left + countj_right - 1;
         while (tempi_up < max_row)
         {
-            if (list[i, j].cube_object.GetComponent<Cube>().type == list[tempi_up, j].cube_object.GetComponent<Cube>().type)
+            if (list[tempi_up, j].cube_object != null && list[i, j].cube_object.GetComponent<Cube>().type == list[tempi_up, j].cube_object.GetComponent<Cube>().type)
             {
                 tempi_up++;
                 counti_up++;
@@ -74,7 +98,7 @@ public class Game : MonoBehaviour {
         }
         while (tempi_down >= 0)
         {
-            if (list[i, j].cube_object.GetComponent<Cube>().type == list[tempi_down, j].cube_object.GetComponent<Cube>().type)
+            if (list[tempi_down, j].cube_object != null && list[i, j].cube_object.GetComponent<Cube>().type == list[tempi_down, j].cube_object.GetComponent<Cube>().type)
             {
                 tempi_down--;
                 counti_down++;
@@ -85,35 +109,60 @@ public class Game : MonoBehaviour {
             }
         }
         counti = counti_up + counti_down - 1;
-        if (counti >= 3||countj>=3)
+        if (counti >= 3 || countj >= 3)
         {
-            list[i, j].cube_object.GetComponent<Cube>().flag = -1;
-            stack[s].push(list[i, j]);
+            if (list[i, j].cube_object.GetComponent<Cube>().flag != -1)
+            {
+                list[i, j].cube_object.GetComponent<Cube>().flag = -1;
+                stack[s].push(list[i, j]);
+                t = true;
+            }
             for (int temp = 1; temp < counti_up; temp++)
             {
-                list[i + temp, j].cube_object.GetComponent<Cube>().flag = -1;
-                stack[s].push(list[i + temp, j]);
+                if (list[i + temp, j].cube_object.GetComponent<Cube>().flag != -1)
+                {
+                    list[i + temp, j].cube_object.GetComponent<Cube>().flag = -1;
+                    stack[s].push(list[i + temp, j]);
+                    t = true;
+                }
             }
             for (int temp = 1; temp < counti_down; temp++)
             {
-                list[i - temp, j].cube_object.GetComponent<Cube>().flag = -1;
-                stack[s].push(list[i - temp, j]);
+                if (list[i - temp, j].cube_object.GetComponent<Cube>().flag != -1)
+                {
+                    list[i - temp, j].cube_object.GetComponent<Cube>().flag = -1;
+                    stack[s].push(list[i - temp, j]);
+                    t = true;
+                }
             }
             for (int temp = 1; temp < countj_right; temp++)
             {
-                list[i, j + temp].cube_object.GetComponent<Cube>().flag = -1;
-                stack[s].push(list[i, j + temp]);
+                if (list[i, j + temp].cube_object.GetComponent<Cube>().flag != -1)
+                {
+                    list[i, j + temp].cube_object.GetComponent<Cube>().flag = -1;
+                    stack[s].push(list[i, j + temp]);
+                    t = true;
+                }
             }
             for (int temp = 1; temp < countj_left; temp++)
             {
-                list[i, j - temp].cube_object.GetComponent<Cube>().flag = -1;
-                stack[s].push(list[i, j - temp]);
+                if (list[i, j - temp].cube_object.GetComponent<Cube>().flag != -1)
+                {
+                    list[i, j - temp].cube_object.GetComponent<Cube>().flag = -1;
+                    stack[s].push(list[i, j - temp]);
+                    t = true;
+                }
             }
-            s++;
-            ok = false;
+            if (t == true)
+            {
+                s++;
+                ok = false;
+                return ok;
+            }
         }
-        return ok;
+        return true;
     }
+
     bool Check()
     {
         ok = true; s = 0;
@@ -127,27 +176,51 @@ public class Game : MonoBehaviour {
         }
         return ok;
     }
+    bool CheckCreate()
+    {
+
+        ok = true;
+        while (create_buffer.top != -1)
+        {
+            CubeManager t = create_buffer.Pop();
+            if (t.cube_object.GetComponent<Cube>().flag != -1)
+                NodeCheck(t.x, t.y);
+        }
+        return ok;
+    }
     void DelNode(int i,int j)
     {
         if (list[i, j].cube_object)
         {
             if (list[i, j].cube_object.GetComponent<Cube>().flag == -1)
             {
-                Destroy(list[i, j].cube_object);
+                list[i, j].cube_object.GetComponent<Cube>().ChangeSprite(Coin);
+                particle = (GameObject)Instantiate(particleEffect, list[i, j].cube_object.transform.position, Quaternion.identity);
+
+                CoinObject.Add(list[i, j].cube_object);
+
+                if (list[i, j].cube_object.GetComponent<Cube>().tag == "objectjelly" && jokejellyon == true) sm.AddMainScore();
+                //Destroy(list[i, j].cube_object);
                 list[i, j].cube_object = null;//
                 list[i, j].state = false;
                 creat_arry[j]++;
+                Destroy(particle, 0.5f);
+
+
             }
         }
     }
+    
+
     bool Correct()
     {
-        for(int j=0;j<max_col;j++)
+        for (int j = 0; j < max_col; j++)
         {
-            for(int i=0;i<max_row;i++)
+            if (creat_arry[j] == 0) continue;
+            for (int i = 0; i < max_row; i++)
             {
-                
-                if(list[i,j].state==true)
+
+                if (list[i, j].state == true)
                 {
                     continue;
                 }
@@ -155,11 +228,12 @@ public class Game : MonoBehaviour {
                 {
                     int pos = i;
                     i++;
-                    while(i<max_row)
+                    while (i < max_row)
                     {
-                        if(list[i,j].state==true)
+                        if (list[i, j].state == true)
                         {
                             list[pos, j].Swap(list[i, j]);
+                            create_buffer.push(list[pos, j]);
                             pos++;
                             i++;
                         }
@@ -173,76 +247,107 @@ public class Game : MonoBehaviour {
         }
         return true;
     }
-    bool KillCubes()
+
+    public bool KillCubes()
     {
         int num = 0;
-        
-        while (num<=s)
+
+        while (num <= s - 1)
         {
             while (stack[num].top != -1)
             {
                 CubeManager temp = stack[num].Pop();
                 if (temp != null)
                 {
-                  
-                    del_buffer[num].push(temp);
-                    
-                    if ((temp.x + 1 < max_row) && (temp.cube_object.GetComponent<Cube>().type == list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().type))
-                    {
 
-                        if (list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().flag != -1)
+                    del_buffer[num].push(temp);
+
+
+                    if (temp.x + 1 < max_row)
+                    {
+                        if (temp.cube_object.GetComponent<Cube>().type == list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().type)
                         {
-                            list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().flag = -1;
-                            stack[num].push(list[temp.x + 1, temp.y]);
+                            if (list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().flag != -1)
+                            {
+                                list[temp.x + 1, temp.y].cube_object.GetComponent<Cube>().flag = -1;
+                                stack[num].push(list[temp.x + 1, temp.y]);
+                            }
                         }
                     }
-                    else if ((temp.x - 1 >= 0) && (temp.cube_object.GetComponent<Cube>().type == list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().type))
+                    if (temp.x - 1 >= 0)
                     {
-                        if (list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().flag != -1)
+                        if (temp.cube_object.GetComponent<Cube>().type == list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().type)
                         {
-                            list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().flag = -1;
-                            stack[num].push(list[temp.x - 1, temp.y]);
+                            if (list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().flag != -1)
+                            {
+                                list[temp.x - 1, temp.y].cube_object.GetComponent<Cube>().flag = -1;
+                                stack[num].push(list[temp.x - 1, temp.y]);
+                            }
                         }
                     }
-                    else if ((temp.y + 1 < max_col) && (temp.cube_object.GetComponent<Cube>().type == list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().type))
+                    if (temp.y + 1 < max_col)
                     {
-                        if (list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().flag != -1)
+                        if (temp.cube_object.GetComponent<Cube>().type == list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().type)
                         {
-                            list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().flag = -1;
-                            stack[num].push(list[temp.x, temp.y + 1]);
+                            if (list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().flag != -1)
+                            {
+                                list[temp.x, temp.y + 1].cube_object.GetComponent<Cube>().flag = -1;
+                                stack[num].push(list[temp.x, temp.y + 1]);
+                            }
                         }
                     }
-                    else if ((temp.y - 1 >= 0) && (temp.cube_object.GetComponent<Cube>().type == list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().type))
+                    if (temp.y - 1 >= 0)
                     {
-                        if (list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().flag != -1)
+                        if (temp.cube_object.GetComponent<Cube>().type == list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().type)
                         {
-                            list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().flag = -1;
-                            stack[num].push(list[temp.x, temp.y - 1]);
+                            if (list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().flag != -1)
+                            {
+                                list[temp.x, temp.y - 1].cube_object.GetComponent<Cube>().flag = -1;
+                                stack[num].push(list[temp.x, temp.y - 1]);
+                            }
                         }
                     }
                 }
-               
+
             }
             num++;
         }
         num = 0;
-        while (num <=s)
+        while (num <= s - 1)
         {
             while (del_buffer[num].top != -1)
             {
                 CubeManager del_temp = del_buffer[num].Pop();
                 if (del_temp != null)
                 {
-                    
+
                     DelNode(del_temp.x, del_temp.y);
                 }
             }
             num++;
         }
+        s = 0;
         return true;
     }
-   
-    IEnumerator Creat()
+    IEnumerator Create()
+    {
+        for (int j = 0; j < max_col; j++)
+        {
+            if (creat_arry[j] == 0) continue;
+            while (creat_arry[j] > 0)
+            {
+                int posx = max_row - creat_arry[j];
+                int type = Random.Range(0, 5);
+                Vector3 position = new Vector3(-1.56f + j * 0.67f, 1.96f);
+                list[posx, j] = new CubeManager(type, posx, j, Instantiate(cube[type], position, new Quaternion(0.0f, 0.0f, 0.0f, 1.0f)));
+                creat_arry[j]--;
+                create_buffer.push(list[posx, j]);
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+        check_state = true;
+    }
+    IEnumerator Init()
     {
         for (int i = 0; i < max_row; i++)
         {
@@ -258,7 +363,13 @@ public class Game : MonoBehaviour {
                     creat_arry[j]--;
                 }
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
+        }
+        if (Check() == false)
+        {
+            KillCubes();
+            Correct();
+            StartCoroutine(Create());
         }
         init_state = true;
     }
@@ -266,21 +377,24 @@ public class Game : MonoBehaviour {
     private void Awake()
     {
         init_state = false;
-        StartCoroutine(Creat());
+        StartCoroutine(Init());
     }
     void Start()
     {
-      for(int i=0;i<max_row*max_col/3;i++)
+        boostCheck = false;
+
+        for (int i=0;i<max_row*max_col/3;i++)
         {
             stack[i] = new Buffer();
             del_buffer[i] = new Buffer();
         }
+        create_buffer = new Buffer();
         x1 = -1000;
         x2 = -1000;
         y1 = -1000;
         y2 = -1000;
     }
-  void SwapCube()
+    void SwapCube()
     {
         GameObject temp = list[x1, y1].cube_object;
         list[x1, y1].cube_object = list[x2, y2].cube_object;
@@ -291,76 +405,171 @@ public class Game : MonoBehaviour {
         list[x1, y1].cube_object.transform.position = list[x2, y2].cube_object.transform.position;
         list[x2, y2].cube_object.transform.position = pos;
     }
+
+    public void BoostSet()
+    {
+        if (boostCheck == false)
+            boostCheck = true;
+        else
+            boostCheck = false;
+    }
+
     bool Work()
     {
+
         Collider2D[] col = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
         if (col.Length > 0)
         {
             foreach (Collider2D c in col)
-            { 
+            {
                 if (Input.GetMouseButtonDown(0))
                 {
                     x1 = c.gameObject.GetComponent<Cube>().x;
-                    y1 = c.gameObject.GetComponent<Cube>().y;
-                    
+                    y1 = c.gameObject.GetComponent<Cube>().y;                    
                 }
                 if (Input.GetMouseButtonDown(1))
                 {
                     x2 = c.gameObject.GetComponent<Cube>().x;
                     y2 = c.gameObject.GetComponent<Cube>().y;
+                    sm.LessTurn();
                 }
 
             }
         }
-        if (x1 != -1000 && x2 != -1000 && y1 != -1000 && y2 != -1000)
+
+        if (boostCheck == false)
         {
-            if (x2 - x1 > 1 || x2 - x1 < -1 || y2 - y1 > 1 || y2 - y1 < -1)
-            { 
-                x1 = -1000;
-                x2 = -1000;
-                y1 = -1000;
-                y2 = -1000;
-                return false;
-            }
-            else
+            if (x1 != -1000 && x2 != -1000 && y1 != -1000 && y2 != -1000)
             {
-                SwapCube(); 
-                if (NodeCheck(x1,y1)==true&&NodeCheck(x2,y2)==true)
+                if (x2 - x1 > 1 || x2 - x1 < -1 || y2 - y1 > 1 || y2 - y1 < -1)
                 {
-                    SwapCube();        
-                    x1 = -1000; x2 = -1000; y1 = -1000; y2 = -1000;
+                    x1 = -1000;
+                    x2 = -1000;
+                    y1 = -1000;
+                    y2 = -1000;
                     return false;
                 }
-                x1 = -1000; x2 = -1000; y1 = -1000; y2 = -1000;
-                return true;
+                else
+                {
+                    SwapCube();
+                    bool nc1 = NodeCheck(x1, y1);
+                    bool nc2 = NodeCheck(x2, y2);
+                    if (nc1 == true && nc2 == true)
+                    {
+                        SwapCube();
+                        x1 = -1000;
+                        x2 = -1000;
+                        y1 = -1000;
+                        y2 = -1000;
+                        return false;
+                    }
+
+                    x1 = -1000;
+                    x2 = -1000;
+                    y1 = -1000;
+                    y2 = -1000;
+                    return true;
+                }
             }
+            return false;
+
         }
+
+        else
+            foreach (Collider2D c in col)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    x1 = c.gameObject.GetComponent<Cube>().x;
+                    y1 = c.gameObject.GetComponent<Cube>().y;
+                    int t = list[x1, y1].cube_object.GetComponent<Cube>().type;
+
+                    for (int i = 0; i < max_row; i++)
+                    {
+
+                        for (int j = 0; j < max_col; j++)
+                        {
+                            if (list[i, j].cube_object.GetComponent<Cube>().type == t)
+                            {
+
+
+                                if (list[i, j].cube_object.GetComponent<Cube>().flag != -1)
+                                {
+                                    list[i, j].cube_object.GetComponent<Cube>().flag = -1;
+                                    stack[s].push(list[i, j]);
+                                }
+
+                            }
+
+                        }
+                    }
+                    s++;
+                }
+                return true;
+
+
+                return false;
+            }
         return false;
     }
+
+
+
     void Update ()
     {
+        show.text = "포션들을 정리중이에요...";
         if (init_state == true)
         {
-            show.text = "Wait";
-            if (Check() == false)
+            if (check_state == true)
             {
-
-                if (KillCubes() == true)
+                jokejellyon = false;                
+                if (CheckCreate() == false)
                 {
-                    if (Correct() == true)
+                    check_state = false;
+                    Time.timeScale = 3.0f;
+                    KillCubes();
+                    Correct();
+                    StartCoroutine(Create());                    
+                }
+                else
+                {
+                    show.text = "정리가 완료되었어요! \n START ";
+                    if (Work() == true)
                     {
-                        init_state = false;
-                        StartCoroutine(Creat());
+                        Time.timeScale = 1.0f;
+                        jokejellyon = true;
+                        check_state = false;
+                        KillCubes();
+                        Correct();
+                        StartCoroutine(Create());
+                        sm.AddScore(12);
+                        so.AddStar();                        
                     }
                 }
             }
-            else
-            {
-                show.text = "START";
-                Work();
+        }
 
+        for (int i = 0; i < CoinObject.Count; i++)
+        {
+
+            start = CoinObject[i].transform;
+
+            CoinObject[i].transform.position = Vector2.Lerp(start.position, CoinDestroyPosition.position, Time.deltaTime);
+
+            Debug.Log("코인 이동 들어옴");
+            Debug.Log(CoinObject[i].transform.position.x);
+
+
+            if (Vector3.Distance(CoinObject[i].transform.position, CoinDestroyPosition.position) < 0.1f)
+            {
+                
+                //Particle
+                particle = (GameObject)Instantiate(particleEffect, CoinDestroyPosition.position, Quaternion.identity);
+                Destroy(CoinObject[i]);
+                CoinObject.RemoveAt(i);
+                Destroy(particle, 0.5f);
             }
         }
-      
     }
 }

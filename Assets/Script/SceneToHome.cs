@@ -9,8 +9,7 @@ public class SceneToHome : MonoBehaviour {
         지금은 '포기하기'버튼을 누르면 이동되도록 만들었다.
     */
 
-
-    public string SceneName;
+    public Scene sceneName;
 
     public void ChangeGameScene()
     {

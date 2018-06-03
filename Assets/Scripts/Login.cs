@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Login : MonoBehaviour
 {
@@ -71,12 +72,19 @@ public class Login : MonoBehaviour
             return true;
         return false;
     }
+   
     private void OnMouseDown()
     {
         if (LoadUser(Id.text, PassWord.text) == true)
         {
-            warning.text = ""; 
-            SceneManager.LoadScene(TargetScene);
+            
+                warning.text = "";
+                GameObject.Find("Canvas").SetActive(false);
+                GameObject.Find("login").GetComponent<SpriteRenderer>().enabled = false;
+                GameObject.Find("background").GetComponent<Animation>().Play();
+                
+                manager.state = true;
+
         }
     }
 }
