@@ -2,46 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameManager;
 public class MovingCanvas : MonoBehaviour {
-
-
-    Coroutine CanvasMove = null;
 
     public float Speed = 1.0f;
 
-    int CanvasLength;
-    private CanvasRenderer[] canvasrenderer;
-    private Vector3[] CanvasDestinationPos;
+    private Vector3 CanvasDestinationPos;
     [SerializeField]
-    private GameObject Canvas;
+    private Canvas Object;
     [SerializeField]
     private float InitializePosition;
     
 
 	// Use this for initialization
 	void Start () {
+        CanvasDestinationPos = new Vector3(Object.transform.position.x, Object.transform.position.y);
+        Object.transform.Translate(InitializePosition, 0, 0);
+        
+     
 
-        canvasrenderer = Canvas.GetComponentsInChildren<CanvasRenderer>();
-        CanvasLength = canvasrenderer.Length;
-        CanvasDestinationPos = new Vector3[CanvasLength];
-
-        for (int i = 0; i < canvasrenderer.Length; i++)
-        {
-            CanvasDestinationPos[i] = canvasrenderer[i].transform.position;
-        }
-        foreach (CanvasRenderer child in canvasrenderer)
-        {
-            child.transform.position = new Vector3(child.transform.position.x + InitializePosition, child.transform.position.y);
-            
-        }
+     //   Canvas.transform.Translate(InitializePosition, 0, 0);
        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //if (Input.GetKeyDown("space"))
-        //    StartCoroutine("Move");
 	}
 
    public void StartMove()
@@ -51,11 +37,7 @@ public class MovingCanvas : MonoBehaviour {
 
     public void InitializeCanvasPosition()
     {
-        foreach (CanvasRenderer child in canvasrenderer)
-        {
-            child.transform.position = new Vector3(child.transform.position.x + InitializePosition, child.transform.position.y);
-
-        }
+       Object.transform.Translate(InitializePosition, 0, 0);
     }
 
     IEnumerator Move()
@@ -65,15 +47,12 @@ public class MovingCanvas : MonoBehaviour {
         while (!flag)
         {
             distance -= Speed * Time.deltaTime;
-            for(int i = 0; i < CanvasLength; i++)
-            {
-               canvasrenderer[i].transform.Translate(new Vector3(distance, 0));
-                if (CanvasDestinationPos[CanvasLength-1].x >= canvasrenderer[CanvasLength-1].transform.position.x)
-                {
-                    flag = true;
 
-                }
-            }
+            Object.transform.Translate(distance, 0, 0);
+
+            if (Object.transform.position.x <= CanvasDestinationPos.x)
+                flag = true;
+
             yield return null;
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class ButtonOnOff : MonoBehaviour {
-    public bool ButtonOn;
+    public bool ButtonOn = true;
     private SpriteRenderer spriteRenderer;
 
 	private Image CurrentImage;
@@ -26,12 +26,12 @@ public class ButtonOnOff : MonoBehaviour {
 		
 		if (ButtonOn)
 		{
-			CurrentImage.sprite = SpriteOff;
+			CurrentImage.sprite = SpriteOn;
 			
 		}
 		else
 		{
-			CurrentImage.sprite = SpriteOn;
+			CurrentImage.sprite = SpriteOff;
 
 		}
 	}

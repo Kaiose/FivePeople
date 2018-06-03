@@ -22,6 +22,6 @@ public class TodayGet : MonoBehaviour {
     public void ChangingSprite()
     {
         rewardSprite[System.DateTime.Now.Day - 1].UpdateSprite();
-        AttandManager.AttandInstance.AttandDay[System.DateTime.Now.Day - 1] = true;
+        AttandManager.AttandInstance.AttandDay[System.DateTime.Now.Day - 1] = true; //Save Data
     }
 }

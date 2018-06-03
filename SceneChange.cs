@@ -20,6 +20,6 @@ public class SceneChange : MonoBehaviour {
 
     public void CallScene()
     {
-        SceneManager.LoadScene(SceneName);
+        LoadingSceneManager.LoadScene(SceneName);
     }
 }

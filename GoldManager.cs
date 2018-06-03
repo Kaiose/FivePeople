@@ -5,7 +5,7 @@ using GameManager;
 public class GoldManager : MonoBehaviour {
 
 
-    private int CurrentGold = 200;
+    private int CurrentGold = 200; //LoadData
     static protected GoldManager s_GoldInstance;
     static public GoldManager GoldInstance { get { return s_GoldInstance; } }
 
@@ -35,7 +35,7 @@ public class GoldManager : MonoBehaviour {
 
     public void IncreaseGold(int IncreasingGold)
     {
-        CurrentGold += IncreasingGold;
+        CurrentGold += IncreasingGold; // SaveData
         SpriteManager.SpriteInstance.GoldCountSpriteUpdate();
     }
 
@@ -44,7 +44,7 @@ public class GoldManager : MonoBehaviour {
 
         if (CurrentGold - decreasingGold < 0)
             return;
-        CurrentGold -= decreasingGold;
+        CurrentGold -= decreasingGold; //LoadData
         SpriteManager.SpriteInstance.GoldCountSpriteUpdate();
     }
 }
