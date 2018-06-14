@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CF8D1591-D435-4ECA-23B8-9AB93972C3C2}</ProjectGuid>
+    <ProjectGuid>{B1DF14A7-8A09-2494-82E6-F89F5D4A0FE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -121,10 +121,10 @@
      <Compile Include="Assets\Scripts\UserClass.cs" />
      <Compile Include="Assets\timeStopAndStart.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/백환기/Desktop/TeamProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/백환기/Documents/GitHub/FivePeople/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/백환기/Desktop/TeamProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/백환기/Documents/GitHub/FivePeople/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
